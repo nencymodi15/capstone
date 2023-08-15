@@ -1,0 +1,71 @@
+
+  /* Styles for the login form */
+  .login {
+    width: 300px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    margin: 0 auto;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .login h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .login label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+  }
+
+  .login input[type="text"],
+  .login input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  .login input[type="button"] {
+    background-color: #009933;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .login input[type="button"]:hover {
+    background-color: #00802b;
+  }
+
+  .login label:last-child {
+    margin-top: 10px;
+  }
+
+  .login input[type="button"]:last-child {
+    background-color: #3366cc;
+    margin-top: 10px;
+  }
+
+  .login input[type="button"]:last-child:hover {
+    background-color: #2a56ac;
+  }
+
+  /* Animation for fade-in effect */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
