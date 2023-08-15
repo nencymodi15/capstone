@@ -3,7 +3,6 @@ const connectDB = require("./config/db");
 const app = express();
 const path = require("path");
 app.use(express.json());
-const build = require("build");
 const cors = require("cors");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
