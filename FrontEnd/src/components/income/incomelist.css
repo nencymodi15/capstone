@@ -1,0 +1,52 @@
+.income-list {
+  text-align: center;
+  padding: 20px;
+}
+
+.income-list h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.income {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.income h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.goal-name,
+.amount,
+.date {
+  margin: 5px 0;
+}
+
+.goal-name span,
+.amount span,
+.date span {
+  font-weight: bold;
+}
+
+.delete-button,
+.edit-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+  background-color: #218838;
+}

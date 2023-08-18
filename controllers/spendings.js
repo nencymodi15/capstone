@@ -3,7 +3,7 @@ const spending = require("../models/spending");
 const Budget = require("../models/budget");
 const mongoose = require("mongoose");
 
-//path('http://localhost:6000/api/spendings/addSpending')
+//path('http://localhost:5000/api/spendings/addSpending')
 const addSpending = async (req, res) => {
   console.log("coming here");
   const { userid, category, amount, date, createdAt } = req.body;
@@ -20,13 +20,12 @@ const addSpending = async (req, res) => {
       category,
       amount,
       date,
+      amountRemain: amount,
       createdAt,
     });
 
     try {
-      await spending
-        .insertMany(insertdata)
-        .then(res.send({ message: "successfull" }));
+      await spending.insertMany(insertdata);
     } catch (error) {
       res.send({ message: "There is an error" });
     }
@@ -40,27 +39,25 @@ const addSpending = async (req, res) => {
       });
 
       if (budget) {
-        console.log(budget.amount, amount);
-
         if (budget.amount > amount) {
           var newAmount = budget.amount - amount;
-          console.log(newAmount);
+          var Amountr = budget.amountRemain - amount;
+          var Amounts = budget.amountSpend + amount;
           const updatedBudget = await Budget.findOneAndUpdate(
             { userid: userid, budgetCategory: category },
-            { amount: newAmount },
+            { amount: newAmount, amountRemain: Amountr, amountSpend: Amounts },
             { new: true } // To return the updated document
           );
-
-          if (updatedBudget) {
-            res.send({
-              message: "Budget successfully updated",
-              budget: updatedBudget,
-            });
+          if (updatedBudget !== null) {
+            res.send({ message: "successfull" });
           } else {
             res.send({ message: "Budget not found" });
           }
         } else {
-          res.send({ message: "You spend over your budget" });
+          res.send({
+            message:
+              "You spend over your budget create budget for tracking your spending",
+          });
         }
       } else {
         res.send({ message: "Budget not found" });
@@ -71,7 +68,7 @@ const addSpending = async (req, res) => {
   }
 };
 
-//path('http://localhost:6000/api/spendings/findSpending')
+//path('http://localhost:5000/api/spendings/findSpending')
 const findSpending = (req, res) => {
   const { userid } = req.body;
   spending
@@ -87,9 +84,8 @@ const findSpending = (req, res) => {
       return err;
     });
 };
-//path('http://localhost:6000/api/spendings/findoneSpending')
+//path('http://localhost:5000/api/spendings/findoneSpending')
 const findoneSpending = (req, res) => {
-  console.log("coming her");
   const { _id } = req.body;
   spending
     .findOne({ _id: _id })
@@ -104,66 +100,62 @@ const findoneSpending = (req, res) => {
       return err;
     });
 };
-//path('http://localhost:6000/api/spendings/deleteSpending')
+//path('http://localhost:5000/api/spendings/deleteSpending')
 const deleteSpending = (req, res) => {
-  console.log("coming her");
   const { _id } = req.body;
   spending
-    .deleteOne({ _id: _id })
-    .then((spending) => {
-      console.log(_id);
+    .findOneAndDelete({ _id: _id })
+    .then(async (spending) => {
       if (spending) {
-        editbudgetAmountagain();
-        res.send({
-          message: "spendings Successfully deleted",
-          spending: spending,
-        });
+        const userId = spending.userid;
+        const category = spending.category;
+        await editbudgetAmountagain(userId, category, spending.amount, res);
       } else {
-        res.send({ message: "spendings not found" });
+        console.log("there is an error while deleting ");
       }
     })
     .catch((err) => {
-      return err;
+      console.error(err);
+      res.status(500).send({ message: "An error occurred." });
+    });
+};
+
+async function editbudgetAmountagain(userid, category, amount, res) {
+  try {
+    const budget = await Budget.findOne({
+      userid: userid,
+      budgetCategory: category,
     });
 
-  async function editbudgetAmountagain() {
-    try {
-      const budget = await Budget.findOne({
-        userid: userid,
-        budgetCategory: category,
-      });
+    if (budget) {
+      if (budget.amount > amount) {
+        var newAmount = budget.amount + amount;
+        var Amountr = budget.amountRemain + amount;
+        var Amounts = budget.amountSpend - amount;
+        const updatedBudget = await Budget.findOneAndUpdate(
+          { userid: userid, budgetCategory: category },
+          { amount: newAmount, amountRemain: Amountr, amountSpend: Amounts },
+          { new: true } // To return the updated document
+        );
 
-      if (budget) {
-        console.log(budget.amount, amount);
-
-        if (budget.amount > amount) {
-          var newAmount = budget.amount + amount;
-          console.log(newAmount);
-          const updatedBudget = await Budget.findOneAndUpdate(
-            { userid: userid, budgetCategory: category },
-            { amount: newAmount },
-            { new: true } // To return the updated document
-          );
-
-          if (updatedBudget) {
-            res.send({
-              message: "Budget successfully updated",
-              budget: updatedBudget,
-            });
-          } else {
-            res.send({ message: "Budget not found" });
-          }
+        if (updatedBudget) {
+          res.send({
+            message: "Budget successfully updated",
+            budget: updatedBudget,
+          });
         } else {
-          res.send({ message: "You spend over your budget" });
+          res.send({ message: "Budget not found" });
         }
       } else {
-        res.send({ message: "Budget not found" });
+        res.send({ message: "You spend over your budget" });
       }
-    } catch (error) {
-      console.log(error);
+    } else {
+      res.send({ message: "Budget not found" });
     }
+  } catch (error) {
+    console.log(error);
   }
-};
+}
 
 module.exports = {
   findSpending,

@@ -4,15 +4,11 @@ const mongoose = require("mongoose");
 
 //path('http://localhost:5000/api/budget/findBudget/')
 const findBudget = (req, res) => {
-  console.log("coming here");
   const { userid } = req.body;
-  console.log(userid);
   if (userid) {
     Budget.find({ userid: userid })
       .then((budget) => {
-        console.log(userid);
         if (budget.length > 0) {
-          console.log(budget);
           res.send({ message: "budgets Successfully", budget: budget });
         } else {
           res.send({ message: "Budget not found" });
@@ -55,14 +51,10 @@ const addbudget = (req, res) => {
 
 //path('http://localhost:5000/api/budget/findeoneBudget/')
 const findeoneBudget = (req, res) => {
-  console.log("coming here");
   const { _id } = req.body;
-  console.log(_id);
   Budget.findOne({ _id: _id })
     .then((budget) => {
-      console.log(_id);
       if (budget) {
-        console.log(budget);
         res.send({ message: "budgets found", budget: budget });
       } else {
         res.send({ message: "Budget not found" });
@@ -75,14 +67,10 @@ const findeoneBudget = (req, res) => {
 
 //path('http://localhost:5000/api/budget/deleteoneBudget/')
 const deleteoneBudget = (req, res) => {
-  console.log("coming here");
   const { _id } = req.body;
-  console.log(_id);
   Budget.findOneAndDelete({ _id: _id })
     .then((budget) => {
-      console.log(_id);
       if (budget) {
-        console.log(budget);
         res.send({ message: "budgets Successfully deleted", budget: budget });
       } else {
         res.send({ message: "Budget not found" });
@@ -94,24 +82,27 @@ const deleteoneBudget = (req, res) => {
 };
 
 //path('http://localhost:5000/api/budget/updateBudget/')
-const updateBudget = (req, res) => {
+const updateBudget = async (req, res) => {
   const {
+    _id,
     userid,
     budgetCategory,
     description,
     amount,
     enddate,
     createdAt,
-    _id,
   } = req.body;
+  console.log(req.body);
 
   if (userid && amount && description && _id) {
     try {
-      const updatedBudget = Budget.findOneAndUpdate(
-        { _id: _id }, // Filter based on the _id field
-        { userid, budgetCategory, description, amount, enddate, createdAt }, // Update the fields
-        { new: true } // Return the updated document
-      );
+      const updatedBudget = await Budget.findOneAndUpdate(
+        { _id: _id },
+        { userid, budgetCategory, description, amount, enddate, createdAt },
+        { new: true }
+      ).exec(); // Execute the query to get the updated document
+
+      console.log(updatedBudget);
 
       if (updatedBudget) {
         res.send({
@@ -122,6 +113,7 @@ const updateBudget = (req, res) => {
         res.send({ message: "Budget not found" });
       }
     } catch (error) {
+      console.error(error);
       res.send({ message: "There was an error updating the budget" });
     }
   } else {

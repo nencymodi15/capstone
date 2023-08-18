@@ -3,11 +3,10 @@ const express = require("express");
 const Income = require("../models/income");
 const Goal = require("../models/goal");
 const mongoose = require("mongoose");
-const income = require("../models/income");
 const app = express();
 app.use(express.json());
 
-//path('http://localhost:6000/api/incomes/addIncome')
+//path('http://localhost:5000/api/incomes/addIncome')
 const addIncome = async (req, res) => {
   const { userid, source, amount, goalName, date } = req.body;
 
@@ -73,43 +72,32 @@ async function editGoalAmount(userid, amount, goalName) {
   }
 }
 
-//path('http://localhost:6000/api/incomes/findOneIncome')
-const findOneIncome = async (res, req) => {
+//path('http://localhost:5000/api/incomes/findOneIncome')
+const findOneIncome = (req, res) => {
   const { _id } = req.body;
-  console.log("receiving id:", _id);
-
-  if (_id) {
-    try {
-      const income = await Income.findOne({ _id: _id });
-
+  Income.findOne({ _id: _id })
+    .then((income) => {
       if (income) {
-        res.send({ message: "Income found", income: income });
+        res.send({ message: "Income Found", income: income });
       } else {
-        res.send({ message: "Income Not found" });
+        res.send({ message: "income not found" });
       }
-    } catch (err) {
-      console.error(err);
-      res.status(500).send({ message: "An error occurred" });
-    }
-  } else {
-    res.status(400).send({ message: "Missing _id parameter" });
-  }
+    })
+    .catch((err) => {
+      return err;
+    });
 };
 
-//path('http://localhost:6000/api/incomes/findIncome')
+//path('http://localhost:5000/api/incomes/findIncome')
 const findIncome = async (req, res) => {
-  console.log("coming here");
   const { userid } = req.body;
-  console.log(userid);
   if (userid) {
-    Goal.find({ userid: userid })
-      .then((goal) => {
-        console.log(userid);
-        if (goal.length > 0) {
-          console.log(goal);
-          res.send({ message: "goals Successfully", goal: goal });
+    Income.find({ userid: userid })
+      .then((income) => {
+        if (income.length > 0) {
+          res.send({ message: "incomes Successfully", income: income });
         } else {
-          res.send({ message: "goal not found" });
+          res.send({ message: "income not found" });
         }
       })
       .catch((err) => {
@@ -120,18 +108,18 @@ const findIncome = async (req, res) => {
   }
 };
 
-//path('http://localhost:6000/api/incomes/deleteIncome')
+//path('http://localhost:5000/api/incomes/deleteIncome')
 const deleteIncome = async (req, res) => {
-  console.log("coming her");
   const { _id } = req.body;
-  console.log(_id);
   Income.findOneAndDelete({ _id: _id })
-    .then((income) => {
+    .then(async (income) => {
       console.log(income);
-      editgoalAmountagain(income.userid, income.goalName, income.amount);
-      console.log(_id);
-      console.log(income.userid, income.goalName);
       if (income) {
+        await editgoalAmountagain(
+          income.userid,
+          income.goalName,
+          income.amount
+        );
         res.send({
           message: "Incomes Successfully deleted",
           income: income,
@@ -141,21 +129,22 @@ const deleteIncome = async (req, res) => {
       }
     })
     .catch((err) => {
-      return err;
+      console.error(err);
+      res
+        .status(500)
+        .send({ message: "An error occurred while deleting income." });
     });
-
   async function editgoalAmountagain(userid, goalname, amount) {
     try {
       const goal = await Goal.findOne({
         userid: userid,
         goal_name: goalname,
       });
-
       if (goal) {
         var goalamount = parseInt(goal.current_amount);
         var incomeamount = parseInt(amount);
         var newAmount = goalamount - incomeamount;
-        console.log(newAmount);
+
         const updatedgoal = await Goal.findOneAndUpdate(
           { userid: userid, goal_name: goal.goal_name },
           { current_amount: newAmount },
@@ -176,7 +165,7 @@ const deleteIncome = async (req, res) => {
   }
 };
 
-//path('http://localhost:6000/api/incomes/updateIncome')
+//path('http://localhost:5000/api/incomes/updateIncome')
 const updateIncome = async (req, res) => {
   const { userid, source, amount, goalName, date, createdAt, _id } = req.body;
 

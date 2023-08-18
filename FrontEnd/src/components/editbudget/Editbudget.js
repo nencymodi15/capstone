@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
+import "./editbudget.css";
 import axios from "axios";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 
@@ -37,28 +38,23 @@ function EditBudget({ setLoginUser, user }) {
     });
   };
   const editbudget = () => {
-    const { _id, userid, budgetCategory, amount, description } = budget;
-    console.log(userid, budgetCategory, amount, description);
-    if (userid && budgetCategory && amount && description) {
+    const { _id, userid, budgetCategory, amount, description, enddate } =
+      budget;
+    console.log(_id, userid, budgetCategory, amount, description, enddate);
+    if ((userid && budgetCategory && amount && description, enddate)) {
       axios
         .post("http://localhost:5000/api/budget/editBudget", budget)
         .then((res) => {
           console.log(res.data.message);
           alert(res.data.message);
-          setBudget(res.data.budget);
-          axios("http://localhost:5000/api/users/finduser", budget.userid).then(
-            (res) => {
-              setLoginUser(res.data.user);
-              navigate("/");
-            }
-          );
+          navigate("/");
         });
     } else {
       alert("invalid post");
     }
   };
   return (
-    <div>
+    <div className='edit-budget'>
       <h1>Edit Budget</h1>
       <div className='editbudget'>
         <label htmlFor='budgetCategory'>Category:</label>

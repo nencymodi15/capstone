@@ -1,0 +1,54 @@
+.goal-list {
+  text-align: center;
+  padding: 20px;
+}
+
+.goal-list h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.goal {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.goal h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.target-amount,
+.current-amount,
+.deadline,
+.days-remaining {
+  margin: 5px 0;
+}
+
+.target-amount span,
+.current-amount span,
+.deadline span,
+.days-remaining span {
+  font-weight: bold;
+}
+
+.delete-button,
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+  background-color: #0056b3;
+}

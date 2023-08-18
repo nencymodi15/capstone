@@ -5,10 +5,8 @@ const loginuser = (req, res) => {
   User.findOne({ email: emailid })
     .then((user) => {
       if (user) {
-        console.log();
         if (password === user.password) {
           res.send({ message: "Login Successful", user: user });
-          console.log(user);
         } else {
           res.send({ message: "Password didn't match" });
         }
@@ -55,9 +53,7 @@ const registerUser = async (req, res) => {
       password: password,
     });
     try {
-      console.log(Formdata);
       await User.insertMany(Formdata);
-      console.log("successfully registed");
       res.send({ message: "successfully registed" });
     } catch (error) {
       res.send({ message: "there is an error" });

@@ -1,0 +1,94 @@
+.addbudget {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.addbudget h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.addbudget-form {
+  width: 100%;
+  max-width: 400px;
+  background-color: #f0f5f9;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Required for animations */
+}
+
+.addbudget h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #3f4d67;
+}
+
+.addbudget label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #3f4d67;
+}
+
+.addbudget select,
+.addbudget input[type='text'],
+.addbudget textarea,
+.addbudget input[type='date'] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  color: #3f4d67;
+}
+
+.addbudget input[type='button'] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addbudget input[type='button']:hover {
+  background-color: #0056b3;
+}
+
+.addbudget label:last-child {
+  display: block;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.addbudget label:last-child input[type='button'] {
+  background-color: transparent;
+  color: #007bff;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+}
+
+.addbudget label:last-child input[type='button']:hover {
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.addbudget-form {
+  animation: slideInFromBottom 0.5s ease-in-out;
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
+import "./budgetadd.css";
 import { useParams } from "react-router-dom";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -33,14 +34,7 @@ function BudgetAdd({ setLoginUser }) {
         .then((res) => {
           console.log(res.data.message);
           alert(res.data.message);
-          setBudget(res.data.budget);
-          axios("http://localhost:5000/api/users/finduser", budget.userid).then(
-            (res) => {
-              alert("the budgethas been deleted", res.data.user);
-              setLoginUser(res.data.user);
-              navigate("/");
-            }
-          );
+          navigate("/");
         });
     } else {
       alert("invalid post");
@@ -48,12 +42,13 @@ function BudgetAdd({ setLoginUser }) {
   };
 
   return (
-    <div>
+    <div className='addbudget'>
       <h1>this is the add budget page</h1>
-      <div className='addbudget'>
+      <div className='addbudget-form'>
         <h1>Add budget</h1>
         <label for='budgetCategory'>Category:</label>
         <select
+          id='budgetCategory'
           name='budgetCategory'
           value={budget.budgetCategory}
           onChange={handleChange}

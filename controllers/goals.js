@@ -1,10 +1,8 @@
 const { query } = require("express");
 const Goal = require("../models/goal");
 const mongoose = require("mongoose");
-const goal = require("../models/goal");
-const budget = require("../models/budget");
 
-//path('http://localhost:6000/api/goals/addGoal')
+//path('http://localhost:5000/api/goals/addGoal')
 const addGoal = async (req, res) => {
   const {
     userid,
@@ -41,27 +39,25 @@ const addGoal = async (req, res) => {
     }
   }
 };
-//path('http://localhost:6000/api/goals/FindGoal')
+//path('http://localhost:5000/api/goals/FindGoal')
 const FindGoal = async (req, res) => {
   const { userid } = req.body;
   Goal.find({ userid: userid })
     .then((goals) => {
-      if (goals) {
-        res.send({ message: "Goals found sucessfully", goals: goals });
+      if (goals.length > 0) {
+        res.send({ message: "budgets Successfully", goals: goals });
       } else {
-        res.send({ message: "Goals could not be found" });
+        res.send({ message: "Budget not found" });
       }
     })
     .catch((err) => {
       return err;
     });
 };
-//path('http://localhost:6000/api/goals/findoneGoal')
+//path('http://localhost:5000/api/goals/findoneGoal')
 const findoneGoal = async (req, res) => {
-  console.log("coming here");
   const { _id } = req.body;
-  goal
-    .findOne({ _id: _id })
+  Goal.findOne({ _id: _id })
     .then((goal) => {
       if (goal) {
         res.send({ message: "goal found", goal: goal });
@@ -73,11 +69,10 @@ const findoneGoal = async (req, res) => {
       return err;
     });
 };
-//path('http://localhost:6000/api/goals/deleteGoal')
+//path('http://localhost:5000/api/goals/deleteGoal')
 const deleteGoal = async (req, res) => {
   const { _id } = req.body;
-  goal
-    .deleteOne({ _id: _id })
+  Goal.deleteOne({ _id: _id })
     .then((goal) => {
       if (goal) {
         res.send({ message: "Goal is deleted", goal: goal });
@@ -90,7 +85,7 @@ const deleteGoal = async (req, res) => {
     });
 };
 
-//path('http://localhost:6000/api/goals/updateGoal')
+//path('http://localhost:5000/api/goals/updateGoal')
 const updateGoal = async (req, res) => {
   const {
     _id,
@@ -106,7 +101,7 @@ const updateGoal = async (req, res) => {
   if (userid && target_amount && goal_name && _id) {
     try {
       // Assuming goal is a Mongoose model
-      const updatedGoal = await goal.findOneAndUpdate(
+      const updatedGoal = await Goal.findOneAndUpdate(
         { _id: _id },
         {
           userid,

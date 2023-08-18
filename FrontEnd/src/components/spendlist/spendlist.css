@@ -1,0 +1,72 @@
+.spend-list {
+  text-align: center;
+  padding: 20px;
+}
+
+.spend-list h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.spending {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.category {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.amount,
+.date {
+  margin: 5px 0;
+}
+
+.amount span,
+.date span {
+  font-weight: bold;
+}
+
+.deleteS-button{
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover,
+.edit-button:hover {
+  background-color: #c82333;
+}
+
+/* Animation */
+.spending {
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .spend-list {
+    padding: 10px;
+  }
+}

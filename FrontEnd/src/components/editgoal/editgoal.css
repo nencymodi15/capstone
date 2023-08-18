@@ -1,0 +1,59 @@
+.edit-goal {
+  text-align: center;
+  padding: 20px;
+}
+
+.edit-goal h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.edit-goal-form {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.edit-goal-form h2 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.input-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.update-button,
+.back-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.update-button:hover,
+.back-button:hover {
+  background-color: #0056b3;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .edit-goal-form {
+    padding: 10px;
+  }
+}

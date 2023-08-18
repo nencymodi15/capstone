@@ -6,6 +6,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 function BudgetList(props, { setLoginUser }) {
   const navigate = useNavigate();
+  const date = new Date();
   const [budget, setBudget] = useState([]);
   const userid = props.data;
 
@@ -16,32 +17,20 @@ function BudgetList(props, { setLoginUser }) {
         .then((res) => {
           if (res.data.budget) {
             setBudget(res.data.budget);
+            res.data.budget.map((b) => {
+              console.log(b.enddate);
+            });
           } else {
             setBudget("nodata");
           }
         });
     }
   }, []);
-
-  async function deleteone(_id) {
-    console.log("coming this way");
-    axios
-      .post("http://localhost:5000/api/budget/deleteBudget", { _id: _id })
-      .then((res) => {
-        axios("http://localhost:5000/api/users/finduser", budget.userid).then(
-          (res) => {
-            setLoginUser(res.data.user);
-            navigate("/");
-          }
-        );
-      });
-  }
-
   return (
     <div>
       <h1>budgetlist</h1>
       {budget === "nodata" ? (
-        <p>No budget Found</p>
+        <p className='addbudgetacord'>No budget Found</p>
       ) : budget.length > 0 ? (
         budget.map((b) => (
           <div className='budget' key={b._id}>
@@ -52,11 +41,11 @@ function BudgetList(props, { setLoginUser }) {
             </p>
             <p className='remamount'>
               <span>remaining amount:</span>
-              {b.amount}
+              {b.amountRemain}
             </p>
             <p className='samount'>
               <span>amount spend:</span>
-              {b.amount}
+              {b.amountSpend}
             </p>
             <p className='enddate'>
               <span>Ending Date:</span>
@@ -66,14 +55,10 @@ function BudgetList(props, { setLoginUser }) {
               <span>Motivation:</span>
               {b.description}
             </p>
-            <p className='remdays'>
-              <span>Remaining Days:</span>
-              {b.amount}
-            </p>
             <button
               className='delbutton'
               value='delete'
-              onClick={() => deleteone(b._id)}
+              onClick={() => navigate(`/deletebudget/${b._id}`)}
             >
               delete
             </button>
