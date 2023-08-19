@@ -8,7 +8,7 @@
     "index": "node index",
     "FrontEnd": "npm start --prefix FrontEnd",
     "dev": "concurrently \"npm run index\" \"npm run FrontEnd\"",
-    "build": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix frontend && npm run build --prefix frontend"
+    "build": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
   },
   "keywords": [],
   "author": "NencyModi",
