@@ -1,6 +1,7 @@
 import { useState } from "react";
 import React from "react";
 import axios from "axios";
+import "./addgoal.css";
 import { useParams } from "react-router-dom";
 import { Outlet, useNavigate } from "react-router-dom";
 
