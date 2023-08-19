@@ -92,7 +92,6 @@ const updateBudget = async (req, res) => {
     enddate,
     createdAt,
   } = req.body;
-  console.log(req.body);
 
   if (userid && amount && description && _id) {
     try {
@@ -100,9 +99,7 @@ const updateBudget = async (req, res) => {
         { _id: _id },
         { userid, budgetCategory, description, amount, enddate, createdAt },
         { new: true }
-      ).exec(); // Execute the query to get the updated document
-
-      console.log(updatedBudget);
+      ).exec();
 
       if (updatedBudget) {
         res.send({
