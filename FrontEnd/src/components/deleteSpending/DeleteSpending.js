@@ -31,7 +31,6 @@ function DeleteSpending({ setLoginUser }) {
       })
       .then((res) => {
         console.log("coming in the deletepage");
-        alert(res.data.message);
       });
     navigate("/");
   }

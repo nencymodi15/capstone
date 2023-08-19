@@ -24,7 +24,6 @@ function Login({ setLoginUser }) {
     axios
       .post("https://budgetmate-rutm.onrender.com/api/users/login", user)
       .then((res) => {
-        alert(res.data.message);
         setLoginUser(res.data.user);
         navigate("/");
       });

@@ -45,7 +45,6 @@ function EditIncome({ setLoginUser }) {
         .post("http://localhost:5000/api/income/editIncome", Income)
         .then((res) => {
           console.log(res.data.message);
-          alert(res.data.message);
           setIncome(res.data.income);
           axios("http://localhost:5000/api/users/finduser", Income.userid).then(
             (res) => {

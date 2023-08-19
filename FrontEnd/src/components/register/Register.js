@@ -35,10 +35,7 @@ function Register() {
       console.log("coming here");
       axios
         .post("http://localhost:5000/api/users/register", user)
-        .then((res) => {
-          console.log(res.data.message);
-          alert(res.data.message);
-        });
+        .then((res) => {});
       Navigate("/login");
     } else {
       alert("invalidPost");

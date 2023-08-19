@@ -46,7 +46,6 @@ function EditBudget({ setLoginUser, user }) {
         .post("http://localhost:5000/api/budget/editBudget", budget)
         .then((res) => {
           console.log(res.data.message);
-          alert(res.data.message);
           navigate("/");
         });
     } else {
