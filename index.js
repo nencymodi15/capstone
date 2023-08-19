@@ -26,10 +26,12 @@ app.use("/api/spendings/", spending_router);
 app.use("/api/incomes/", income_router);
 app.use("/api/goals/", Goal_router);
 
-if (process.env.NODE_ENV === "production ") {
-  app.use("/", express.static(path.join(__dirname, "client/build")));
-  app.get("#", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "FrontEnd/build", "index.html"));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("FrontEnd/build"));
+
+  app.get("*", function (req, res) {
+    const index = path.join(__dirname, "build", "index.html");
+    res.sendFile(index);
   });
 }
 
