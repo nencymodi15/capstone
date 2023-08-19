@@ -26,7 +26,7 @@ app.use("/api/spendings/", spending_router);
 app.use("/api/incomes/", income_router);
 app.use("/api/goals/", Goal_router);
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production ") {
   app.use("/", express.static(path.join(__dirname, "client/build")));
   app.get("#", (req, res) => {
     res.sendFile(path.resolve(__dirname, "FrontEnd/build", "index.html"));
