@@ -19,7 +19,9 @@ function EditGoal({ setLoginUser, user }) {
     console.log("coming in the use effect");
     if (id) {
       axios
-        .post("http://localhost:5000/api/goals/findoneGoal", { _id: id })
+        .post("https://budgetmate-rutm.onrender.com/api/goals/findoneGoal", {
+          _id: id,
+        })
         .then((res) => {
           console.log(res.data.goal);
           setGoal(res.data.goal);
@@ -43,7 +45,7 @@ function EditGoal({ setLoginUser, user }) {
     console.log(userid, goal_name, target_amount, current_amount, deadline);
     if (userid && goal_name && target_amount && deadline) {
       axios
-        .post("http://localhost:5000/api/goals/updateGoal", goal)
+        .post("https://budgetmate-rutm.onrender.com/api/goals/updateGoal", goal)
         .then(() => {
           navigate("/");
         });

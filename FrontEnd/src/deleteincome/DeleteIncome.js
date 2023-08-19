@@ -11,9 +11,12 @@ function DeleteIncome({ setLoginUser }) {
   useEffect(() => {
     if (id) {
       axios
-        .post("http://localhost:5000/api/incomes/findOneIncome", {
-          _id: id,
-        })
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/incomes/findOneIncome",
+          {
+            _id: id,
+          }
+        )
         .then((res) => {
           setIncome(res.data.income);
         })
@@ -24,7 +27,9 @@ function DeleteIncome({ setLoginUser }) {
   }, []);
   async function deleteone(_id) {
     axios
-      .post("http://localhost:5000/api/incomes/deleteIncome", { _id: _id })
+      .post("https://budgetmate-rutm.onrender.com/api/incomes/deleteIncome", {
+        _id: _id,
+      })
       .then(() => {
         navigate("/");
       });

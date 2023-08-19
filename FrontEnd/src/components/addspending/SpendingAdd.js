@@ -30,7 +30,10 @@ function SpendingAdd({ setLoginUser }) {
     console.log(userid, category, amount, date);
     if (userid && category && amount && date) {
       axios
-        .post("http://localhost:5000/api/spendings/addSpending", Spending)
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/spendings/addSpending",
+          Spending
+        )
         .then(() => {
           navigate("/");
         });

@@ -20,7 +20,9 @@ function IncomeAdd({ setLoginUser }) {
   useEffect(() => {
     if (params.id) {
       axios
-        .post("http://localhost:5000/api/goals/FindGoal", { userid: params.id })
+        .post("https://budgetmate-rutm.onrender.com/api/goals/FindGoal", {
+          userid: params.id,
+        })
         .then((res) => {
           if (res.data.goals) {
             setGoal(res.data.goals);
@@ -49,7 +51,10 @@ function IncomeAdd({ setLoginUser }) {
     console.log(userid, source, amount, goalName, date);
     if (userid && source && goalName && amount && date) {
       axios
-        .post("http://localhost:5000/api/incomes/addIncome", Income)
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/incomes/addIncome",
+          Income
+        )
         .then(() => {
           navigate("/");
         });

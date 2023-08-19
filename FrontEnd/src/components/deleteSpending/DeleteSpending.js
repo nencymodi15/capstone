@@ -12,9 +12,12 @@ function DeleteSpending({ setLoginUser }) {
   useEffect(() => {
     if (id) {
       axios
-        .post("http://localhost:5000/api/spendings/findoneSpending", {
-          _id: id,
-        })
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/spendings/findoneSpending",
+          {
+            _id: id,
+          }
+        )
         .then((res) => {
           console.log(res.data.spending);
           setSpending(res.data.spending);
@@ -26,9 +29,12 @@ function DeleteSpending({ setLoginUser }) {
   }, []);
   async function deleteone(id) {
     await axios
-      .post("http://localhost:5000/api/spendings/deleteSpending", {
-        _id: id,
-      })
+      .post(
+        "https://budgetmate-rutm.onrender.com/api/spendings/deleteSpending",
+        {
+          _id: id,
+        }
+      )
       .then((res) => {
         console.log("coming in the deletepage");
       });

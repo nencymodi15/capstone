@@ -2,7 +2,7 @@ const { query } = require("express");
 const Goal = require("../models/goal");
 const mongoose = require("mongoose");
 
-//path('http://localhost:5000/api/goals/addGoal')
+//path('https://budgetmate-rutm.onrender.com/api/goals/addGoal')
 const addGoal = async (req, res) => {
   const {
     userid,
@@ -39,7 +39,7 @@ const addGoal = async (req, res) => {
     }
   }
 };
-//path('http://localhost:5000/api/goals/FindGoal')
+//path('https://budgetmate-rutm.onrender.com/api/goals/FindGoal')
 const FindGoal = async (req, res) => {
   const { userid } = req.body;
   Goal.find({ userid: userid })
@@ -54,7 +54,7 @@ const FindGoal = async (req, res) => {
       return err;
     });
 };
-//path('http://localhost:5000/api/goals/findoneGoal')
+//path('https://budgetmate-rutm.onrender.com/api/goals/findoneGoal')
 const findoneGoal = async (req, res) => {
   const { _id } = req.body;
   Goal.findOne({ _id: _id })
@@ -69,7 +69,7 @@ const findoneGoal = async (req, res) => {
       return err;
     });
 };
-//path('http://localhost:5000/api/goals/deleteGoal')
+//path('https://budgetmate-rutm.onrender.com/api/goals/deleteGoal')
 const deleteGoal = async (req, res) => {
   const { _id } = req.body;
   Goal.deleteOne({ _id: _id })
@@ -85,7 +85,7 @@ const deleteGoal = async (req, res) => {
     });
 };
 
-//path('http://localhost:5000/api/goals/updateGoal')
+//path('https://budgetmate-rutm.onrender.com/api/goals/updateGoal')
 const updateGoal = async (req, res) => {
   const {
     _id,

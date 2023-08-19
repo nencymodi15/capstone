@@ -30,7 +30,10 @@ function BudgetAdd({ setLoginUser }) {
     console.log(userid, budgetCategory, amount, description);
     if (userid && budgetCategory && amount && description) {
       axios
-        .post("http://localhost:5000/api/budget/addBudget", budget)
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/budget/addBudget",
+          budget
+        )
         .then((res) => {
           navigate("/");
         });

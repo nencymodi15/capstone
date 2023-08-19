@@ -12,7 +12,9 @@ function DeleteBudget({ setLoginUser }) {
   useEffect(() => {
     if (id) {
       axios
-        .post("http://localhost:5000/api/budget/findOneBudget", { _id: id })
+        .post("https://budgetmate-rutm.onrender.com/api/budget/findOneBudget", {
+          _id: id,
+        })
         .then((res) => {
           console.log(res.data.budget);
           setBudget(res.data.budget);
@@ -24,7 +26,7 @@ function DeleteBudget({ setLoginUser }) {
   }, []);
   async function deleteone(id) {
     await axios
-      .post("http://localhost:5000/api/budget/deleteBudget", {
+      .post("https://budgetmate-rutm.onrender.com/api/budget/deleteBudget", {
         _id: id,
       })
       .then((res) => {

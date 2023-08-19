@@ -28,9 +28,11 @@ function GoalAdd({ setLoginUser }) {
     const { userid, goal_name, target_amount, current_amount, deadline } = goal;
     console.log(userid, goal_name, target_amount, current_amount, deadline);
     if (userid && goal_name && target_amount && deadline) {
-      axios.post("http://localhost:5000/api/goals/addGoal", goal).then(() => {
-        navigate("/");
-      });
+      axios
+        .post("https://budgetmate-rutm.onrender.com/api/goals/addGoal", goal)
+        .then(() => {
+          navigate("/");
+        });
     } else {
       alert("invalid post");
     }

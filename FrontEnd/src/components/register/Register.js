@@ -34,7 +34,7 @@ function Register() {
     if (firstname && lastname && emailid && password === Re_enterpassword) {
       console.log("coming here");
       axios
-        .post("http://localhost:5000/api/users/register", user)
+        .post("https://budgetmate-rutm.onrender.com/api/users/register", user)
         .then((res) => {});
       Navigate("/login");
     } else {

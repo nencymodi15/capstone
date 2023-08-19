@@ -19,7 +19,10 @@ function EditIncome({ setLoginUser }) {
     console.log("coming in the use effect");
     if (id) {
       axios
-        .post("http://localhost:5000/api/incomes/findOneIncome", { _id: id })
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/incomes/findOneIncome",
+          { _id: id }
+        )
         .then((res) => {
           console.log(res.data.income);
           setIncome(res.data.income);
@@ -42,16 +45,20 @@ function EditIncome({ setLoginUser }) {
     console.log(userid, incomeCategory, amount, description);
     if (userid && incomeCategory && amount && description) {
       axios
-        .post("http://localhost:5000/api/income/editIncome", Income)
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/income/editIncome",
+          Income
+        )
         .then((res) => {
           console.log(res.data.message);
           setIncome(res.data.income);
-          axios("http://localhost:5000/api/users/finduser", Income.userid).then(
-            (res) => {
-              navigate("/");
-              setLoginUser(res.data.user);
-            }
-          );
+          axios(
+            "https://budgetmate-rutm.onrender.com/api/users/finduser",
+            Income.userid
+          ).then((res) => {
+            navigate("/");
+            setLoginUser(res.data.user);
+          });
         });
     } else {
       alert("invalid post");

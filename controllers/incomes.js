@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const app = express();
 app.use(express.json());
 
-//path('http://localhost:5000/api/incomes/addIncome')
+//path('https://budgetmate-rutm.onrender.com/api/incomes/addIncome')
 const addIncome = async (req, res) => {
   const { userid, source, amount, goalName, date } = req.body;
 
@@ -72,7 +72,7 @@ async function editGoalAmount(userid, amount, goalName) {
   }
 }
 
-//path('http://localhost:5000/api/incomes/findOneIncome')
+//path('https://budgetmate-rutm.onrender.com/api/incomes/findOneIncome')
 const findOneIncome = (req, res) => {
   const { _id } = req.body;
   Income.findOne({ _id: _id })
@@ -88,7 +88,7 @@ const findOneIncome = (req, res) => {
     });
 };
 
-//path('http://localhost:5000/api/incomes/findIncome')
+//path('https://budgetmate-rutm.onrender.com/api/incomes/findIncome')
 const findIncome = async (req, res) => {
   const { userid } = req.body;
   if (userid) {
@@ -108,7 +108,7 @@ const findIncome = async (req, res) => {
   }
 };
 
-//path('http://localhost:5000/api/incomes/deleteIncome')
+//path('https://budgetmate-rutm.onrender.com/api/incomes/deleteIncome')
 const deleteIncome = async (req, res) => {
   const { _id } = req.body;
   Income.findOneAndDelete({ _id: _id })
@@ -165,7 +165,7 @@ const deleteIncome = async (req, res) => {
   }
 };
 
-//path('http://localhost:5000/api/incomes/updateIncome')
+//path('https://budgetmate-rutm.onrender.com/api/incomes/updateIncome')
 const updateIncome = async (req, res) => {
   const { userid, source, amount, goalName, date, createdAt, _id } = req.body;
 

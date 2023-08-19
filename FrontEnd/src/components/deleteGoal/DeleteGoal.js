@@ -12,7 +12,7 @@ function DeleteGoal({ setLoginUser }) {
   useEffect(() => {
     if (id) {
       axios
-        .post("http://localhost:5000/api/goals/findoneGoal", {
+        .post("https://budgetmate-rutm.onrender.com/api/goals/findoneGoal", {
           _id: id,
         })
         .then((res) => {
@@ -26,7 +26,7 @@ function DeleteGoal({ setLoginUser }) {
   }, []);
   async function deleteone(id) {
     await axios
-      .post("http://localhost:5000/api/goals/deleteGoal", {
+      .post("https://budgetmate-rutm.onrender.com/api/goals/deleteGoal", {
         _id: id,
       })
       .then((res) => {

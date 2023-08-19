@@ -12,7 +12,9 @@ function GoalList(props, { setLoginUser }) {
   useEffect(() => {
     if (userid) {
       axios
-        .post("http://localhost:5000/api/goals/FindGoal", { userid: userid })
+        .post("https://budgetmate-rutm.onrender.com/api/goals/FindGoal", {
+          userid: userid,
+        })
         .then((res) => {
           if (res.data.goals) {
             setGoal(res.data.goals);

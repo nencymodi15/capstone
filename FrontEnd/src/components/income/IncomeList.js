@@ -12,7 +12,7 @@ function IncomeList(props, { setLoginUser }) {
   useEffect(() => {
     if (userid) {
       axios
-        .post("http://localhost:5000/api/Incomes/FindIncome", {
+        .post("https://budgetmate-rutm.onrender.com/api/Incomes/FindIncome", {
           userid: userid,
         })
         .then((res) => {

@@ -13,7 +13,9 @@ function BudgetList(props, { setLoginUser }) {
   useEffect(() => {
     if (userid) {
       axios
-        .post("http://localhost:5000/api/budget/findBudget", { userid: userid })
+        .post("https://budgetmate-rutm.onrender.com/api/budget/findBudget", {
+          userid: userid,
+        })
         .then((res) => {
           if (res.data.budget) {
             setBudget(res.data.budget);

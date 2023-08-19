@@ -2,7 +2,7 @@ const { query } = require("express");
 const Budget = require("../models/budget");
 const mongoose = require("mongoose");
 
-//path('http://localhost:5000/api/budget/findBudget/')
+//path('https://budgetmate-rutm.onrender.com/api/budget/findBudget/')
 const findBudget = (req, res) => {
   const { userid } = req.body;
   if (userid) {
@@ -22,7 +22,7 @@ const findBudget = (req, res) => {
   }
 };
 
-//path('http://localhost:5000/api/budget/addBudget/')
+//path('https://budgetmate-rutm.onrender.com/api/budget/addBudget/')
 const addbudget = (req, res) => {
   const { userid, budgetCategory, description, amount, enddate, createdAt } =
     req.body;
@@ -49,7 +49,7 @@ const addbudget = (req, res) => {
   }
 };
 
-//path('http://localhost:5000/api/budget/findeoneBudget/')
+//path('https://budgetmate-rutm.onrender.com/api/budget/findeoneBudget/')
 const findeoneBudget = (req, res) => {
   const { _id } = req.body;
   Budget.findOne({ _id: _id })
@@ -65,7 +65,7 @@ const findeoneBudget = (req, res) => {
     });
 };
 
-//path('http://localhost:5000/api/budget/deleteoneBudget/')
+//path('https://budgetmate-rutm.onrender.com/api/budget/deleteoneBudget/')
 const deleteoneBudget = (req, res) => {
   const { _id } = req.body;
   Budget.findOneAndDelete({ _id: _id })
@@ -81,7 +81,7 @@ const deleteoneBudget = (req, res) => {
     });
 };
 
-//path('http://localhost:5000/api/budget/updateBudget/')
+//path('https://budgetmate-rutm.onrender.com/api/budget/updateBudget/')
 const updateBudget = async (req, res) => {
   const {
     _id,

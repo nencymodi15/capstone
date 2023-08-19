@@ -3,7 +3,7 @@ const spending = require("../models/spending");
 const Budget = require("../models/budget");
 const mongoose = require("mongoose");
 
-//path('http://localhost:5000/api/spendings/addSpending')
+//path('https://budgetmate-rutm.onrender.com/api/spendings/addSpending')
 const addSpending = async (req, res) => {
   console.log("coming here");
   const { userid, category, amount, date, createdAt } = req.body;
@@ -68,7 +68,7 @@ const addSpending = async (req, res) => {
   }
 };
 
-//path('http://localhost:5000/api/spendings/findSpending')
+//path('https://budgetmate-rutm.onrender.com/api/spendings/findSpending')
 const findSpending = (req, res) => {
   const { userid } = req.body;
   spending
@@ -84,7 +84,7 @@ const findSpending = (req, res) => {
       return err;
     });
 };
-//path('http://localhost:5000/api/spendings/findoneSpending')
+//path('https://budgetmate-rutm.onrender.com/api/spendings/findoneSpending')
 const findoneSpending = (req, res) => {
   const { _id } = req.body;
   spending
@@ -100,7 +100,7 @@ const findoneSpending = (req, res) => {
       return err;
     });
 };
-//path('http://localhost:5000/api/spendings/deleteSpending')
+//path('https://budgetmate-rutm.onrender.com/api/spendings/deleteSpending')
 const deleteSpending = (req, res) => {
   const { _id } = req.body;
   spending

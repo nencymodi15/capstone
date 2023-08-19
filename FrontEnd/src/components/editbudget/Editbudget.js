@@ -19,7 +19,9 @@ function EditBudget({ setLoginUser, user }) {
     console.log("coming in the use effect");
     if (id) {
       axios
-        .post("http://localhost:5000/api/budget/findOneBudget", { _id: id })
+        .post("https://budgetmate-rutm.onrender.com/api/budget/findOneBudget", {
+          _id: id,
+        })
         .then((res) => {
           console.log(res.data.budget);
           setBudget(res.data.budget);
@@ -43,7 +45,10 @@ function EditBudget({ setLoginUser, user }) {
     console.log(_id, userid, budgetCategory, amount, description, enddate);
     if ((userid && budgetCategory && amount && description, enddate)) {
       axios
-        .post("http://localhost:5000/api/budget/editBudget", budget)
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/budget/editBudget",
+          budget
+        )
         .then((res) => {
           console.log(res.data.message);
           navigate("/");

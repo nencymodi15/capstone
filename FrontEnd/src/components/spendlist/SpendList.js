@@ -12,9 +12,12 @@ function SpendingList(props, { setLoginUser }) {
   useEffect(() => {
     if (userid) {
       axios
-        .post("http://localhost:5000/api/spendings/FindSpending", {
-          userid: userid,
-        })
+        .post(
+          "https://budgetmate-rutm.onrender.com/api/spendings/FindSpending",
+          {
+            userid: userid,
+          }
+        )
         .then((res) => {
           console.log();
           if (res.data.spendings) {
