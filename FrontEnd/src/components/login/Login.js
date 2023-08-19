@@ -21,11 +21,13 @@ function Login({ setLoginUser }) {
   };
 
   const login = () => {
-    axios.post("http://localhost:5000/api/users/login", user).then((res) => {
-      alert(res.data.message);
-      setLoginUser(res.data.user);
-      navigate("/");
-    });
+    axios
+      .post("https://budgetmate-rutm.onrender.com/api/users/login", user)
+      .then((res) => {
+        alert(res.data.message);
+        setLoginUser(res.data.user);
+        navigate("/");
+      });
   };
 
   return (
