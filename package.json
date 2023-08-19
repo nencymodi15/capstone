@@ -8,10 +8,10 @@
     "index": "node index",
     "FrontEnd": "npm start --prefix FrontEnd",
     "dev": "concurrently \"npm run index\" \"npm run FrontEnd\"",
-    "build": "NPM_CONFIG_PRODUCTION=false npm install && npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
+    "build": "npm install && npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
   },
   "keywords": [],
-  "author": "",
+  "author": "NencyModi",
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.9",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.0.1"
   }
 }
