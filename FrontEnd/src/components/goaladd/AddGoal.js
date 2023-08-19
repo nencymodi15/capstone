@@ -75,10 +75,16 @@ function GoalAdd({ setLoginUser }) {
           value={goal.deadline}
           onChange={handleChange}
         />
-        <input type='button' value={"Add"} onClick={Addgoal}></input>
+        <input
+          type='button'
+          className='.add-button'
+          value={"Add"}
+          onClick={Addgoal}
+        ></input>
         <label>change your mind </label>
         <input
           type='button'
+          className='add-button'
           value={"back to profile"}
           onClick={() => navigate("/")}
         />
