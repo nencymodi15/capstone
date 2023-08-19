@@ -40,7 +40,7 @@ function GoalAdd({ setLoginUser }) {
   };
 
   return (
-    <div className='addgoal'>
+    <div className='add-goal'>
       <h1>this is the add goal page</h1>
       <div className='addgoalform'>
         <h1>Add goal</h1>
