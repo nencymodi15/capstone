@@ -8,8 +8,7 @@
     "index": "node index",
     "start:prod": "SET NODE_ENV=production & nodemon server.js",
     "FrontEnd": "npm start --prefix FrontEnd",
-    "dev": "concurrently \"npm run index\" \"npm run FrontEnd\"",
-    "build": "npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
+    "dev": "concurrently \"npm run index\" \"npm run FrontEnd\""
   },
   "keywords": [],
   "author": "NencyModi",
