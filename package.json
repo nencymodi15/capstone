@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node index --openssl-legacy-provider start",
     "index": "node index",
-    "start:prod": "SET NODE_ENV=production & nodemon server.js",
     "FrontEnd": "npm start --prefix FrontEnd",
     "dev": "concurrently \"npm run index\" \"npm run FrontEnd\"",
     "build": "NPM_CONFIG_PRODUCTION=false npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
